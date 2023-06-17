@@ -10,7 +10,6 @@ const user = z.object({
 
 const userReturn = user.omit({ password: true });
 const userCreate = user.omit({ id: true }).partial({ admin: true });
-// const userCreateRes = userCreate.omit({ password: true })
 const usersRead = userReturn.array();
 
 

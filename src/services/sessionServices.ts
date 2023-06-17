@@ -4,6 +4,7 @@ import { client } from "../database";
 import AppError from "../errors/AppError";
 import { TUser } from "../interfaces/users.interfaces";
 import { sign } from "jsonwebtoken";
+import { compare } from "bcryptjs";
 
 const createSessionLogin = async (payload: TSessionLogin): Promise<TSessionReturn> => {
   const query: QueryResult = await client.query(
@@ -17,12 +18,14 @@ const createSessionLogin = async (payload: TSessionLogin): Promise<TSessionRetur
 
   const user: TUser = query.rows[0];
 
-  if(user.password !== payload.password){
+  const samePassword: boolean =  await compare(payload.password, user.password)
+
+  if(!samePassword){
     throw new AppError("Wrong email or password", 401) 
   };
-
+  
   const token: string = sign(
-    {email: user.email, },
+    {email: user.email, admin: user.admin},
     process.env.SECRET_KEY!,
     { subject: user.id.toString(), expiresIn: process.env.EXPIRES_IN! }
   )

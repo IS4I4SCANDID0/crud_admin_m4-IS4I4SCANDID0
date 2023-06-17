@@ -10,7 +10,7 @@ const verifyToken = (req: Request, res: Response, next: NextFunction): void => {
 
   verify(token, process.env.SECRET_KEY!, (err, decoded) => {
     if(err) throw new AppError(err.message, 401)
-    res.locals = {...res.locals,decoded}
+    res.locals = { ...res.locals, decoded }
   });
   return next()
 }

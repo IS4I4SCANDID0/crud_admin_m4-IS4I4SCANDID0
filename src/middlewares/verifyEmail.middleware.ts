@@ -8,11 +8,11 @@ const verifyEmail = async(req: Request, res: Response, next: NextFunction): Prom
 
   if(!email) return next();
 
-  const queryDeveloperEmail: QueryResult = await client.query(
+  const queryUserEmail: QueryResult = await client.query(
     `SELECT * FROM "users" WHERE "email" = $1;`,
     [email]
   );
-  if(queryDeveloperEmail.rowCount !== 0 ) {
+  if(queryUserEmail.rowCount !== 0 ) {
     throw new AppError("Email already registered", 409)
   };
   
