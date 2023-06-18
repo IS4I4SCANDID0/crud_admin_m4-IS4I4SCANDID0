@@ -12,7 +12,7 @@ const verifyUserId = async(req: Request, res: Response, next: NextFunction): Pro
   );
 
   if(queryUserId.rowCount === 0 ) {
-    throw new AppError("Course or user not found", 409)
+    throw new AppError("Course or user not found", 404)
   };
   
   return next();
