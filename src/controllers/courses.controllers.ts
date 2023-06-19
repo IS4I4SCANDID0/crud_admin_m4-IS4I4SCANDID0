@@ -21,13 +21,13 @@ const readAllCoursesController = async (req: Request, res: Response): Promise<Re
 const addUserInCourseController = async (req: Request, res: Response): Promise<Response> => {
   const { courseId, userId } = req.params
   
-  const linkedStudent = await addUserInCourseService.enrollUserInCourse(userId, courseId);
-  return res.status(200).json(linkedStudent)
+  await addUserInCourseService.enrollUserInCourse(userId, courseId);
+  return res.status(201).json({ message: "User successfully vinculed to course" })
 };
 
 const unbindUserController = async (req: Request, res: Response): Promise<Response> => {
   await unbindUserServices.unbindUser(req.params.id);
-  return res.status(204).send()
+  return res.status(204).json()
 };
 
 const listCoursesAndUsersController = async (req: Request, res: Response): Promise<Response> => {

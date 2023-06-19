@@ -4,7 +4,7 @@ import { client } from "../database";
 import AppError from "../errors/AppError";
 
 const verifyUserId = async(req: Request, res: Response, next: NextFunction): Promise<void> => {
-  const userId = req.params.id;
+  const userId = req.params.userId;
 
   const queryUserId: QueryResult = await client.query(
     `SELECT * FROM "users" WHERE "id" = $1;`,
@@ -12,7 +12,7 @@ const verifyUserId = async(req: Request, res: Response, next: NextFunction): Pro
   );
 
   if(queryUserId.rowCount === 0 ) {
-    throw new AppError("Course or user not found", 404)
+    throw new AppError("User/course not found", 404)
   };
   
   return next();
