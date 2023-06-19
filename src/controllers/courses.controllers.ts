@@ -31,7 +31,7 @@ const unbindUserController = async (req: Request, res: Response): Promise<Respon
 };
 
 const listCoursesAndUsersController = async (req: Request, res: Response): Promise<Response> => {
-  const coursesLinkedUsers = await readCoursesAndUsersLinkedServices.readCoursesAndUsersLinked(req.params.id)
+  const coursesLinkedUsers = await readCoursesAndUsersLinkedServices.readCoursesAndUsersLinked(req.params.courseId)
   return res.status(200).json(coursesLinkedUsers)
 };
 
