@@ -13,7 +13,7 @@ const createSessionLogin = async (payload: TSessionLogin): Promise<TSessionRetur
   );
 
   if(query.rowCount === 0) {
-    throw new AppError("Wrong email or password", 401)
+    throw new AppError("Wrong email/password", 401)
   };
 
   const user: TUser = query.rows[0];
@@ -21,7 +21,7 @@ const createSessionLogin = async (payload: TSessionLogin): Promise<TSessionRetur
   const samePassword: boolean =  await compare(payload.password, user.password)
 
   if(!samePassword){
-    throw new AppError("Wrong email or password", 401) 
+    throw new AppError("Wrong email/password", 401) 
   };
   
   const token: string = sign(
