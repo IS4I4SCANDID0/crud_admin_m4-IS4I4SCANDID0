@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { TCourses } from "../interfaces/courses.interfaces";
 import cousersServices from "../services/cousersServices";
 import addUserInCourseService from "../services/addUserInCourseService";
+import unbindUserServices from "../services/unbindUserServices";
+import readCoursesAndUsersLinkedServices from "../services/readCoursesAndUsersLinkedServices";
 
 
 const createCourseController = async (req: Request, res: Response): Promise<Response> => {
@@ -23,4 +25,14 @@ const addUserInCourseController = async (req: Request, res: Response): Promise<R
   return res.status(200).json(linkedStudent)
 };
 
-export { createCourseController, readAllCoursesController, addUserInCourseController }
+const unbindUserController = async (req: Request, res: Response): Promise<Response> => {
+  await unbindUserServices.unbindUser(req.params.id);
+  return res.status(204).send()
+};
+
+const listCoursesAndUsersController = async (req: Request, res: Response): Promise<Response> => {
+  const coursesLinkedUsers = await readCoursesAndUsersLinkedServices.readCoursesAndUsersLinked(req.params.id)
+  return res.status(200).json(coursesLinkedUsers)
+};
+
+export { createCourseController, readAllCoursesController, addUserInCourseController, unbindUserController, listCoursesAndUsersController }

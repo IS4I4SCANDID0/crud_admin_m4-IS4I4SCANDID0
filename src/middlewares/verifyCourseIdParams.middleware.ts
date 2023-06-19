@@ -7,7 +7,7 @@ const verifyCourseId = async(req: Request, res: Response, next: NextFunction): P
   const courseId = req.params.id;
 
   const queryCourseId: QueryResult = await client.query(
-    `SELECT * FROM "users" WHERE "id" = $1;`,
+    `SELECT * FROM "courses" WHERE "id" = $1;`,
     [courseId]
   );
 

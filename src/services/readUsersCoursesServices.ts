@@ -7,18 +7,18 @@ const readUsersCourses = async (userId: string) => {
   const queryString: string =
     `
       SELECT 
-        c."id" as "courseId",
-        c."name" as "courseName",
-        c."description" as "courseDescription",
-        uc."active" as "userActiveInCourse",
-        u."id" as "userId",
-        u."name" as "userName"
+        c."id" AS "courseId",
+        c."name" AS "courseName",
+        c."description" AS "courseDescription",
+        uc."active" AS "userActiveInCourse",
+        u."id" AS "userId",
+        u."name" AS "userName"
       FROM "courses" c
       JOIN "usersCourses" uc
-        ON c.id = uc."userId"
+        ON c."id" = uc."courseId"
       JOIN "users" u
-        ON u.id = uc."userId"
-      WHERE u.id = $1
+        ON u."id" = uc."userId"
+      WHERE u."id" = $1
    `;
   const queryResult: QueryResult = await client.query(queryString, [userId]);
 
@@ -30,5 +30,3 @@ const readUsersCourses = async (userId: string) => {
 }
 
 export default { readUsersCourses }
-
-// ! USAR ESSE MODELO DE QUERY [LINHA 9 ATÉ A 21] PARA LISTAR TODOS OS CURSOS E USUÁRIOS MATRICULADOS /**/
