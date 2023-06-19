@@ -4,7 +4,7 @@ import AppError from "../errors/AppError";
 
 const enrollUserInCourse = async (userId: string, courseId: string): Promise<Object> => {
   // const checkQuery: string = `
-  //   SELECT * FROM "usersCourses"
+  //   SELECT * FROM "userCourses"
   //   WHERE "userId" = $1 AND "courseId" = $2;
   // `;
 
@@ -16,7 +16,7 @@ const enrollUserInCourse = async (userId: string, courseId: string): Promise<Obj
 
   const queryString: string = 
   `
-    INSERT INTO "usersCourses"
+    INSERT INTO "userCourses"
       ("userId", "courseId")
     VALUES($1, $2)
     RETURNING *;

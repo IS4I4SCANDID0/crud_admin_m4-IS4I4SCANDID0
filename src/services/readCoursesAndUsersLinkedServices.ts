@@ -14,7 +14,7 @@ const readCoursesAndUsersLinked = async (courseId: string) => {
       uc."active" AS "userActiveInCourse"
       FROM "courses" c
     JOIN
-      "usersCourses" uc ON c."id" = uc."courseId"
+      "userCourses" uc ON c."id" = uc."courseId"
     JOIN
       "users" u ON u."id" = uc."userId"
     WHERE
@@ -31,5 +31,3 @@ const readCoursesAndUsersLinked = async (courseId: string) => {
 }
 
 export default { readCoursesAndUsersLinked }
-
-//! COMPLETAR A ROTA CONTROLLER E ROUTES

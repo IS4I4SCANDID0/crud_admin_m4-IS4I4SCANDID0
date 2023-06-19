@@ -11,8 +11,8 @@ const coursesRoutes: Router = Router();
 
 coursesRoutes.post("", validateBody(courseCreate), verifyToken, verifyUserPermission, createCourseController);
 coursesRoutes.post("/:courseId/users/:userId", verifyToken, verifyUserPermission, verifyCourseId, verifyUserId, addUserInCourseController);
-coursesRoutes.get("", verifyToken, verifyUserPermission, readAllCoursesController);
-coursesRoutes.get("/:courseId/users", verifyToken, verifyUserPermission, verifyCourseId, listCoursesAndUsersController);
+coursesRoutes.get("", readAllCoursesController);
+coursesRoutes.get("/:courseId/users", verifyToken, verifyUserPermission, listCoursesAndUsersController);
 coursesRoutes.delete("/:courseId/users/:userId", verifyToken, verifyUserPermission, verifyCourseId, verifyUserId, unbindUserController);
 
 export default coursesRoutes;

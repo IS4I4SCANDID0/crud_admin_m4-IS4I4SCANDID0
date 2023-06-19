@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { QueryResult } from "pg";
 import { TSessionLogin, TSessionReturn } from "../interfaces/session.interfaces";
 import { client } from "../database";

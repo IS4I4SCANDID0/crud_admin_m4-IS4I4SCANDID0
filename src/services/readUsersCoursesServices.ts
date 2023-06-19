@@ -15,7 +15,7 @@ const readUsersCourses = async (userId: string) => {
         u."id" AS "userId",
         u."name" AS "userName"
       FROM "courses" c
-      JOIN "usersCourses" uc
+      JOIN "userCourses" uc
         ON c."id" = uc."courseId"
       JOIN "users" u
         ON u."id" = uc."userId"

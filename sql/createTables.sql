@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS "courses" (
 	"description" TEXT
 );
 
-CREATE TABLE IF NOT EXISTS "usersCourses" (
+CREATE TABLE IF NOT EXISTS "userCourses" (
 	"id" SERIAL PRIMARY KEY,
 	"active" BOOLEAN DEFAULT TRUE,
 	"userId" INTEGER,

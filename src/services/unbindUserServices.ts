@@ -2,7 +2,7 @@ import { client } from "../database";
 
 const unbindUser = async (userId: string): Promise<void> => {
   const queryString: string = `
-      UPDATE "usersCourses"
+      UPDATE "userCourses"
       SET active = false
       WHERE id = $1
     `;
