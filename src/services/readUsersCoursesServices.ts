@@ -1,10 +1,8 @@
 import { QueryResult } from "pg"
-import { TUsersLinkedCoursesReturn } from "../interfaces/usersLinkedCourses.interfaces"
 import { client } from "../database"
 import AppError from "../errors/AppError";
 
 const readUsersCourses = async (userId: string) => {
-  console.log('oi')
   const queryString: string =
     `
       SELECT 
